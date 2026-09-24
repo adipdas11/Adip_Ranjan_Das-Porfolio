@@ -28,7 +28,7 @@ test("research links, publication status, assets and CV are correct", async ({
   const downloadPromise = page.waitForEvent("download");
   await page.getByRole("link", { name: "Download CV", exact: true }).click();
   const download = await downloadPromise;
-  expect(download.suggestedFilename()).toBe("Adip_Ranjan_Das_CV.docx");
+  expect(download.suggestedFilename()).toBe("Adip_Ranjan_Das_CV.pdf");
   expect(await download.failure()).toBeNull();
   for (const src of await page
     .locator("img")

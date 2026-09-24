@@ -38,7 +38,7 @@ Push to `main`. The GitHub Actions workflow checks TypeScript, builds, runs the 
 - `src/index.css`: theme tokens and responsive styling, alongside Tailwind utilities.
 - `public/images`: optimized WebP assets.
 - `public/logo.svg`: original AD monogram and favicon.
-- `public/Adip_Ranjan_Das_CV.docx`: supplied resume download. Replace this file when the CV changes.
+- `public/Adip_Ranjan_Das_CV.pdf`: supplied PDF resume download. Replace this file when the CV changes.
 
 The RA-L paper remains **under review**. Its reported results are explicitly distinguished from the published eGRAP work. The video loads only after the visitor presses Play. The existing Formspree endpoint is retained; contact delivery depends on that account remaining active.
 

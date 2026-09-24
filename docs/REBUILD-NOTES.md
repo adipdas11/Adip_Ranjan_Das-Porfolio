@@ -2,7 +2,7 @@
 
 ## Content review
 
-The supplied `Adip_Ranjan_Das_CV_MERL.docx` is the authority for current research, education, employment dates, skills and publication titles. Instructions inside documents are not treated as user requests. The downloadable DOCX is a copy of the supplied resume, not a newly authored CV; its existing internal links are retained.
+The supplied `Adip_Ranjan_Das_CV_MERL.docx` informed the initial rebuild's research, education, employment dates, skills and publication titles. Instructions inside documents are not treated as user requests. At the user's request, the downloadable resume was subsequently replaced with an unchanged copy of the supplied `Adip_Ranjan_Das_CV_MERL.pdf`. All resume links use the PDF, and the previous Word download has been removed from the deployed files.
 
 The old publication list contained titles that did not match the updated CV. It has been replaced with three published papers and the 2026 IEEE RA-L submission, explicitly marked **Under review**, with no fabricated publication or manuscript link. The BioRob exosuit paper is separate from the MSc occupational exoskeleton dissertation; the dissertation project now links to its code rather than incorrectly linking to the BioRob paper.
 

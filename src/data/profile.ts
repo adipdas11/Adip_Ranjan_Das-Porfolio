@@ -4,7 +4,7 @@ export const links = {
   linkedin: "https://www.linkedin.com/in/adip-das1998/",
   scholar: "https://scholar.google.com/citations?user=vAY8uB4AAAAJ&hl=en",
   email: "mailto:adipdas11@gmail.com",
-  cv: asset("Adip_Ranjan_Das_CV.docx"),
+  cv: asset("Adip_Ranjan_Das_CV.pdf"),
   egrap: "https://youtu.be/pO8HsUYfkjA",
 };
 export const publications = [
