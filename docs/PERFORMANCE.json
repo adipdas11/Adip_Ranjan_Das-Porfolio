@@ -1,0 +1,19 @@
+{
+  "lighthouseVersion": "13.5.0",
+  "testedAt": "2026-09-24T14:27:29.668Z",
+  "target": "Local production preview",
+  "formFactor": "mobile",
+  "throttlingMethod": "simulate",
+  "scores": {
+    "performance": 99,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "largestContentfulPaintMs": 2180.6400000000003,
+    "totalBlockingTimeMs": 10,
+    "cumulativeLayoutShift": 0
+  },
+  "note": "Lab simulation, not real-user measurements. Lighthouse generated a complete report with no audit runtime error; its Windows temporary-profile cleanup subsequently reported EPERM."
+}
