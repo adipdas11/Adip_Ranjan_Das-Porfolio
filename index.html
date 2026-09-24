@@ -3,11 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Adip Ranjan Das | Robotics Portfolio</title>
+    <meta name="theme-color" content="#141615" />
+    <meta
+      name="description"
+      content="Adip Ranjan Das — Robotics PhD researcher at Heriot-Watt University, ARM²Lab, National Robotarium. Robot learning, perception and adaptive dual-arm disassembly."
+    />
+    <meta property="og:title" content="Adip Ranjan Das | Robotics Researcher" />
+    <meta
+      property="og:description"
+      content="Building robots that adapt to the real world. Explore research, publications and robotics projects."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%logo.svg" />
+    <title>Adip Ranjan Das | Robotics Researcher</title>
+    <script>
+      (() => {
+        let saved;
+        try {
+          saved = localStorage.getItem("portfolio-theme");
+        } catch {}
+        document.documentElement.dataset.theme =
+          saved === "light" || saved === "dark"
+            ? saved
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript
+      >This portfolio needs JavaScript. Contact Adip Ranjan Das at
+      adipdas11@gmail.com, or visit github.com/adipdas11.</noscript
+    >
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

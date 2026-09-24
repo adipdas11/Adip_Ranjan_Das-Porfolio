@@ -1,36 +1,47 @@
-# Adip Ranjan Das - Robotics Portfolio 🤖
+# Adip Ranjan Das — Robotics Portfolio
 
-A modern, interactive frontend portfolio showcasing my work as a Robotics PhD Candidate specializing in Robotic Manipulation, Deep Learning, and Hardware Development.
+Research portfolio for Adip Ranjan Das, PhD researcher at ARM²Lab, Heriot-Watt University / National Robotarium.
 
-## Features ✨
+**Website:** https://adipdas11.github.io/Adip_Ranjan_Das-Porfolio/
 
-- **3D Spline Interactive Background:** Features a highly immersive, interactive 3D robot scene dynamically mapped to scrolling.
-- **Dynamic Framer Motion Animations:** Smooth staggering, scaling, and viewport-driven scroll transitions for a premium feel.
-- **Glassmorphism UI:** Sophisticated blurred backdrop filtering and gradient masking.
-- **Integrated Contact Form:** Functional contact page seamlessly integrated with Formspree.
+## Development
 
-## Development Requirements 🛠️
+Requires Node.js 22 or newer.
 
-- Node.js (v18+)
+```sh
+npm ci
+npm run dev
+```
 
-## Local Setup 🚀
+Open http://localhost:3000/Adip_Ranjan_Das-Porfolio/.
 
-1. Install all required dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the local development server:
-   ```bash
-   npm run dev
-   ```
+## Verification
 
-## Deploying to GitHub Pages 🌐
+```sh
+npm run lint
+npm run build
+npx playwright install chromium
+npm run test:e2e
+```
 
-Deploying this portfolio directly to GitHub Pages is fully supported via the included `gh-pages` module.
+Tests run against a production preview and mock contact submissions and video embedding. No test message is sent. If using an existing Chromium installation, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable.
 
-1. Ensure your repository is pushed to GitHub, and the remote origin is set.
-2. In your `package.json`, ensure the `homepage` property correctly points to your expected GitHub Pages URL.
-3. Run the following command to automatically build your project and push it to the `gh-pages` branch:
-   ```bash
-   npm run deploy
-   ```
+## Publishing
+
+Push to `main`. The GitHub Actions workflow checks TypeScript, builds, runs the browser tests, and deploys to GitHub Pages. Repository Settings → Pages must use **GitHub Actions** as the source. The build uses `/Adip_Ranjan_Das-Porfolio/` as its base path.
+
+## Editing content
+
+- `src/data/profile.ts`: publications, experience, skills, external links.
+- `src/data/projects.ts`: all 15 projects and their source links.
+- `src/components/Background.tsx`: education and research biography.
+- `src/index.css`: theme tokens and responsive styling, alongside Tailwind utilities.
+- `public/images`: optimized WebP assets.
+- `public/logo.svg`: original AD monogram and favicon.
+- `public/Adip_Ranjan_Das_CV.docx`: supplied resume download. Replace this file when the CV changes.
+
+The RA-L paper remains **under review**. Its reported results are explicitly distinguished from the published eGRAP work. The video loads only after the visitor presses Play. The existing Formspree endpoint is retained; contact delivery depends on that account remaining active.
+
+The site supports system-aware, persistent light/dark themes, reduced motion, keyboard navigation, accessible project dialogs, and mobile layouts. No API key or environment variable is needed.
+
+See [rebuild notes](docs/REBUILD-NOTES.md) for the content audit, performance comparison and verification scope, and [component credits](docs/COMPONENTS.md) for the MIT-licensed 21st.dev/Magic UI adaptations.

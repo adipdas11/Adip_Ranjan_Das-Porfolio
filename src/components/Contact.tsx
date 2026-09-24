@@ -1,157 +1,107 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Mail, MessageSquare, Send, CheckCircle } from 'lucide-react';
-
+import { useState, type FormEvent } from "react";
+import { ArrowUpRight, ArrowRight, Mail } from "lucide-react";
+import { links } from "../data/profile";
+import { ExternalLink } from "./ui/shared";
 export default function Contact() {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus('submitting');
-
-    const form = e.currentTarget;
-    const data = new FormData(form);
-
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (status === "sending") return;
+    const form = event.currentTarget;
+    setStatus("sending");
     try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
+      const response = await fetch("https://formspree.io/f/xwvnjavk", {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+        signal: AbortSignal.timeout(15000),
       });
-
-      if (response.ok) {
-        setStatus('success');
-        form.reset();
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        setStatus('error');
-        setTimeout(() => setStatus('idle'), 5000);
-      }
-    } catch (error) {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 5000);
+      if (!response.ok) throw new Error("Message not accepted");
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
     }
-  };
-
+  }
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-sm font-mono text-brand-primary uppercase tracking-[0.3em] mb-4">05. Connection</h2>
-            <h3 className="text-4xl font-bold mb-8 tracking-tight">Let's build the <span className="text-brand-primary">Future</span> together.</h3>
-            <p className="text-neutral-400 text-lg mb-12 leading-relaxed">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-              Whether you have a question or just want to say hi, I'll try my best to get back to you!
-            </p>
-
-            <div className="space-y-6">
-              <a
-                href="mailto:adipdas11@gmail.com"
-                className="flex items-center gap-4 p-4 glass rounded-2xl border-white/5 hover:border-brand-primary/30 transition-all group"
-              >
-                <div className="p-3 rounded-xl bg-brand-primary/10 group-hover:bg-brand-primary/20 transition-colors">
-                  <Mail className="w-6 h-6 text-brand-primary" />
-                </div>
-                <div>
-                  <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1">Email Me</p>
-                  <p className="text-lg font-bold text-white">adipdas11@gmail.com</p>
-                </div>
-              </a>
-
-              <div className="flex items-center gap-4 p-4 glass rounded-2xl border-white/5">
-                <div className="p-3 rounded-xl bg-brand-secondary/10">
-                  <MessageSquare className="w-6 h-6 text-brand-secondary" />
-                </div>
-                <div>
-                  <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1">Location</p>
-                  <p className="text-lg font-bold text-white">Edinburgh, United Kingdom</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="glass p-8 rounded-3xl border-white/5 relative"
-          >
-            <form
-              action="https://formspree.io/f/xwvnjavk"
-              method="POST"
-              className="space-y-6"
-              onSubmit={handleSubmit}
-            >
-              <div className="space-y-2">
-                <label className="text-xs font-mono text-neutral-500 uppercase tracking-widest ml-1">Full Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="John Doe"
-                  className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-primary/50 text-white transition-all"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-mono text-neutral-500 uppercase tracking-widest ml-1">Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="john@example.com"
-                  className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-primary/50 text-white transition-all"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-mono text-neutral-500 uppercase tracking-widest ml-1">Message</label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Your message here..."
-                  className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-brand-primary/50 text-white transition-all resize-none"
-                  required
-                />
-              </div>
-              <motion.button
-                type="submit"
-                disabled={status === 'submitting' || status === 'success'}
-                whileHover={status === 'idle' ? { scale: 1.02 } : {}}
-                whileTap={status === 'idle' ? { scale: 0.98 } : {}}
-                className={`w-full py-4 text-white rounded-xl font-bold tracking-tight transition-all flex items-center justify-center gap-2 ${status === 'success'
-                  ? 'bg-green-500/80'
-                  : status === 'error'
-                    ? 'bg-red-500/80'
-                    : 'bg-brand-primary hover:bg-brand-secondary shadow-lg shadow-brand-primary/20'
-                  } ${status === 'submitting' ? 'opacity-70 cursor-wait' : ''}`}
-              >
-                {status === 'submitting' ? (
-                  <span>Transmitting...</span>
-                ) : status === 'success' ? (
-                  <>
-                    <CheckCircle className="w-5 h-5" />
-                    <span>Transmission Successful!</span>
-                  </>
-                ) : status === 'error' ? (
-                  <span>Transmission Failed. Try Again</span>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    <span>Send Transmission</span>
-                  </>
-                )}
-              </motion.button>
-            </form>
-          </motion.div>
+    <section id="contact" className="contact-section">
+      <div className="shell contact-grid">
+        <div>
+          <p className="eyebrow mb-6">05 / GET IN TOUCH</p>
+          <h2>
+            Let’s make
+            <br />
+            robots do <span className="text-accent">more.</span>
+          </h2>
+          <p className="text-muted mt-6 max-w-md leading-relaxed">
+            Have a research question, a collaboration in mind, or a robotics
+            challenge? I’d love to hear from you.
+          </p>
+          <a href={links.email} className="contact-email">
+            <Mail size={19} /> adipdas11@gmail.com <ArrowUpRight size={20} />
+          </a>
+          <div className="flex flex-wrap gap-6 mt-8 text-sm">
+            <ExternalLink href={links.github}>GitHub</ExternalLink>
+            <ExternalLink href={links.linkedin}>LinkedIn</ExternalLink>
+            <ExternalLink href={links.scholar}>Scholar</ExternalLink>
+          </div>
         </div>
+        <form onSubmit={submit} className="contact-form">
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label htmlFor="contact-name">Your name</label>
+              <input
+                id="contact-name"
+                name="name"
+                autoComplete="name"
+                required
+                placeholder="Alex Smith"
+                maxLength={150}
+              />
+            </div>
+            <div>
+              <label htmlFor="contact-email">Email address</label>
+              <input
+                id="contact-email"
+                type="email"
+                name="email"
+                autoComplete="email"
+                required
+                placeholder="alex@university.edu"
+                maxLength={254}
+              />
+            </div>
+          </div>
+          <label htmlFor="contact-message">What are you working on?</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            rows={5}
+            required
+            placeholder="Tell me a little about your idea…"
+            maxLength={5000}
+          />
+          <button
+            type="submit"
+            className="primary-button mt-5 w-full"
+            disabled={status === "sending"}
+          >
+            {status === "sending" ? "Sending…" : "Send message"}
+            <ArrowRight size={18} />
+          </button>
+          <p
+            aria-live="polite"
+            className={`form-status ${status === "error" ? "text-error" : "text-muted"}`}
+          >
+            {status === "success"
+              ? "Thanks — your message has been sent."
+              : status === "error"
+                ? "Your message could not be sent. Please try again or email me directly."
+                : "Messages are sent through Formspree."}
+          </p>
+        </form>
       </div>
     </section>
   );
