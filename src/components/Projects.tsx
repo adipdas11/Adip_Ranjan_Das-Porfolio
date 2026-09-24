@@ -84,7 +84,7 @@ function ProjectDetails({
             )}
             {project.link && (
               <ExternalLink href={project.link} className="text-link">
-                View demonstration
+                {project.linkLabel ?? "View demonstration"}
               </ExternalLink>
             )}
             {project.paper && (

@@ -33,7 +33,7 @@ Push to `main`. The GitHub Actions workflow checks TypeScript, builds, runs the 
 ## Editing content
 
 - `src/data/profile.ts`: publications, experience, skills, external links.
-- `src/data/projects.ts`: all 15 projects and their source links.
+- `src/data/projects.ts`: all 16 projects and their source links.
 - `src/components/Background.tsx`: education and research biography.
 - `src/index.css`: theme tokens and responsive styling, alongside Tailwind utilities.
 - `public/images`: optimized WebP assets.

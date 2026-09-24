@@ -74,13 +74,22 @@ test("project gallery and accessible modal work with keyboard", async ({
 }) => {
   await page.goto("./");
   await expect(page.locator(".project-card")).toHaveCount(3);
-  await page.getByRole("button", { name: "View all 15 projects" }).click();
-  await expect(page.locator(".project-card")).toHaveCount(15);
+  await page.getByRole("button", { name: "View all 16 projects" }).click();
+  await expect(page.locator(".project-card")).toHaveCount(16);
   const trigger = page.getByRole("button", {
-    name: "View Isaac Sim · Pick & Place details",
+    name: "View Teleoperation to Imitation Learning details",
   });
   await trigger.click();
   await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(page.getByRole("dialog")).toContainText("Coena Das");
+  await expect(page.getByRole("dialog")).toContainText("7 of 10 trials");
+  await expect(
+    page.getByRole("link", { name: "Watch video on LinkedIn" }),
+  ).toHaveAttribute(
+    "href",
+    "https://www.linkedin.com/posts/adip-das1998_imitationlearning-robotics-machinelearning-ugcPost-7453393433056145408-tdnB/",
+  );
+  await expect(page.locator("iframe, video")).toHaveCount(0);
   await expect(
     page.getByRole("button", { name: "Close project details" }),
   ).toBeFocused();

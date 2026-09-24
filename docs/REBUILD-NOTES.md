@@ -18,6 +18,12 @@ The previous 15-project archive is retained, with images optimized and CV correc
 
 ## Design and implementation
 
+### Added project: teleoperation and imitation learning
+
+The user's [LinkedIn post](https://www.linkedin.com/posts/adip-das1998_imitationlearning-robotics-machinelearning-ugcPost-7453393433056145408-tdnB/) supplies the new featured project, bringing the archive to 16 projects. It describes webcam/MediaPipe and Meta Quest/OpenTeach teleoperation, 50 demonstrations, an ACT policy trained with LeRobot, and 7 successful real-world xArm5 trials out of 10. The result is scoped to the demonstrated task, and Coena Das is credited as collaborator. Broader tasks and policy benchmarking remain future work. The original video cover is optimized as a local WebP; the demo opens on LinkedIn without adding an embedded player or background video requests. No code repository was linked in the post.
+
+The performance measurements below describe the initial rebuild, before this additional project.
+
 React + Vite + Tailwind CSS 4. A graphite/lime dark theme and a high-contrast light theme share semantic tokens. The new original AD logo also serves as the SVG favicon. Navigation, research, publications, projects, background and contact are organized into one responsive page. Both themes follow the system preference on first visit, remember an explicit choice, and work without localStorage access.
 
 See `COMPONENTS.md` for the two 21st.dev/Magic UI adaptations and license. Navigation has a skip link and an accessible mobile menu. Project details use a native modal dialog, keyboard focus containment and Escape dismissal. Form labels and status announcements are accessible. Reduced motion disables animation and smooth scrolling.

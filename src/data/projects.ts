@@ -8,10 +8,24 @@ export interface Project {
   tags: string[];
   github?: string;
   link?: string;
+  linkLabel?: string;
   paper?: string;
 }
 
 export const projects: Project[] = [
+  {
+    title: "Teleoperation to Imitation Learning",
+    category: "Robot Learning",
+    date: "2026",
+    description:
+      "From webcam and VR teleoperation to a learned xArm5 policy: 50 demonstrations and 7 successful trials out of 10.",
+    longDescription:
+      "Developed an end-to-end teleoperation, demonstration collection and imitation-learning pipeline in collaboration with Coena Das, using the robot manipulation facilities at The National Robotarium. The system supports markerless webcam control with MediaPipe and immersive Meta Quest control through OpenTeach. We recorded 50 demonstration episodes and trained an Action Chunking with Transformers (ACT) policy using LeRobot, then deployed it for real-world inference on a UFACTORY xArm5. The policy succeeded in 7 of 10 trials on the demonstrated task. Future work includes more varied tasks and benchmarking additional policy architectures.",
+    image: "images/16_teleoperation_imitation_learning.webp",
+    tags: ["LeRobot", "ACT", "xArm5", "MediaPipe", "OpenTeach", "Meta Quest"],
+    link: "https://www.linkedin.com/posts/adip-das1998_imitationlearning-robotics-machinelearning-ugcPost-7453393433056145408-tdnB/",
+    linkLabel: "Watch video on LinkedIn",
+  },
   {
     title: "Isaac Sim · Pick & Place",
     category: "Simulation",
